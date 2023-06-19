@@ -33,7 +33,7 @@ function User(){
     //     const fetchAllData = async () => {
     //       try {
     //         const res = await axios.get("http://localhost:8081/users").then
-    //         setUsersdata(res.data);
+    //         setUserdataf(res.data);
     //       } catch (err) {
     //         console.log(err);
     //       }
@@ -88,7 +88,7 @@ function User(){
 
                     </div>
 
-                    <button className='btnf'> Submit</button>
+                    <button className='btnf' onClick={() => window.location.reload(true)}> Submit</button>
 
                     
                 </form> 

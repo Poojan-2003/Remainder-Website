@@ -73,7 +73,7 @@ function Services() {
 
                     <div className='srem'>
                     <label>Remainder Duration <span className='colrem'>:</span> </label>
-                    <input type='text' placeholder='Enter the Remainder Duration' className='irem' 
+                    <input type='number' placeholder='Enter the Remainder Duration' className='irem' 
                     onChange={e => setRemainderduration(e.target.value)} required></input>
                     </div>
 

@@ -8,6 +8,7 @@ import ServiceDetails from "./Pages/ServiceDetails";
 import BusinessDetails from "./Pages/BusinessDetails"
 import Updateuser from "./Pages/update/Updateuser";
 import Updatedashboard from "./Pages/update/Updatedashboard";
+import UpdateBusinessdetails from "./Pages/update/UpdateBusinessdetails";
 const App = () => {
   return(
     <div className="App">
@@ -23,7 +24,8 @@ const App = () => {
         <Route exact path='/Users' element={< User />}></Route>
         <Route exact path='/Users/Updateuser/:id' element={<Updateuser />}></Route>
         <Route exact path='/Dashboard/Updatedashboard/:id' element={<Updatedashboard />}></Route>
-        
+        <Route exact path='/Updatedashboard/:id' element={<Updatedashboard />}></Route>
+        <Route exact path='/ServiceDetails/UpdateBusinessdetails/:id' element={<UpdateBusinessdetails />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
