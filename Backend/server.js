@@ -38,7 +38,7 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({origin: true, credentials: true}));
 
 const db = mysql.createConnection({
     host:"localhost",
@@ -144,15 +144,14 @@ app.post('/customer',(req,res) => {
 //Services.js
 
 app.post('/services',(req,res) => {
-    const sql = "INSERT INTO services (`name`,`Email`, `description`,`remainderdate`,`reminderduration`,`regdate`)VALUES(?)";
+    const sql = "INSERT INTO services (`name`,`Email`,`description`,`remainderdate`,`reminderduration`,`regdate`)VALUES(?)";
     const values = [
         req.body.UserName,
         req.body.Email,
         req.body.Description,
         req.body.Expirydate,
         req.body.Remainderduration,
-        req.body.regdate,
-        
+        req.body.regdate
     ]
     db.query(sql,[values],(err,data) => {
         if(err) return res.json("Error")
@@ -205,6 +204,7 @@ app.get("/dashboard", (req, res) => {
     })
 
 })
+
 app.delete('/deletedashboarduser/:id',(req,res) => {
 
     const sql = "DELETE FROM servicedetail where ID = ?";
@@ -218,8 +218,36 @@ app.delete('/deletedashboarduser/:id',(req,res) => {
     })
 })
 
+app.put('/updatebusiness/:id',(req,res) => {
+
+    const sql = "update businessdetails set `Name` = ?, `Phone` = ? ,`Address` = ? where ID = ?";
+
+    const values = [
+        req.body.name,
+        req.body.phone,
+        req.body.address
+    ]
+    const id = req.params.id;
 
 
+    db.query(sql,[...values,id],(err,data) => {
+        if(err) return res.json("Error")
+        return res.json(data);
+    })
+
+})
+app.delete('/deletebusiness/:id',(req,res) => {
+
+    const sql = "DELETE FROM businessdetails where ID = ?";
+    const id = req.params.id;
+    
+
+
+    db.query(sql,[id],(err,data) => {
+        if(err) return res.json("Error")
+        return res.json(data);
+    })
+})
 
  
 app.listen(8081,() => {
